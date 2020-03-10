@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'Website\SiteController@index')->name('website-nome');
+
+Auth::routes();
+Route::group(['prefix' => 'painel'], function() {
+
+    Route::get('/home', 'Painel\HomeController@index')->name('home');
 });
