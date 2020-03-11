@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Painel;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Post;
+use App\Models\Category;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -14,7 +17,10 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $arrStatus = [0 => 'Rascunho', 1 => 'Publicado'];
+        view()->share('arrStatus', $arrStatus);
+
+        view()->share('menuAtivo', 'home');
     }
 
     /**
@@ -24,6 +30,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $totalPosts = Post::count();
+        $posts = Post::orderby('created_at', 'desc')->limit(5)->get();
+        $totalCategories = Category::count();
+        $totalUsers = User::count();
+        return view('painel.pages.home', compact('totalPosts', 'totalCategories', 'totalUsers', 'posts'));
     }
 }

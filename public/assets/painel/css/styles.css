@@ -1,0 +1,48 @@
+body {
+    font-family: "Nunito", Arial, Helvetica;
+    background-color: #fafbfe;
+    color: #919ca7;
+}
+/* FORM LOGIN */
+.card-login {
+    margin-top: 30%;
+}
+/* GERAL */
+.card {
+    background-color: #ffffff;
+    box-shadow: 0 0 35px 0 rgba(154,161,171,0.15);
+    border: none;
+    border-radius: 0;
+}
+.card .card-header {
+    background-color: #ffffff;
+    border-bottom: #efeeee 1px solid;
+    font-weight: bold;
+}
+
+.btn-link {
+    color: #3688fc;
+}
+.table {
+    color: #919ca7;
+}
+
+/* HEADER */
+.bg-dark {
+    background-color: #313a46;
+}
+.navbar-blog {
+    margin-top: 56px;
+    box-shadow: #a2a2a2 0px 0px 4px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+}
+.navbar-blog li a {
+    color: #919ca7;
+}
+.navbar-blog li a:hover {
+    color: #343a40;
+}
+.navbar-blog li.active a {
+    color: #3688fc;
+}
