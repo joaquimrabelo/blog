@@ -4,6 +4,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            @if (session('status_message'))
+                @php
+                    $status_message = Session('status_message');
+                @endphp
+                <div class="alert alert-{{ $status_message['type'] }}" role="alert">
+                    {{ $status_message['msg'] }}
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">Lista de posts ({{ $posts->total() }})</div>
                 <div class="card-body">

@@ -10,7 +10,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="nav-categorias">
               <a class="dropdown-item" href="{{ route('painel-categories') }}"><i class="fa fa-list"></i> Ver todas</a>
-              <a class="dropdown-item" href="#"><i class="fa fa-plus"></i> Adicionar nova</a>
+              <a class="dropdown-item" href="{{ route('painel-add-category') }}"><i class="fa fa-plus"></i> Adicionar nova</a>
             </div>
           </li>
           <li class="nav-item dropdown  {{ $menuAtivo == 'posts' ? 'active' : '' }}">
@@ -19,7 +19,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="nav-posts">
               <a class="dropdown-item" href="{{ route('painel-posts') }}"><i class="fa fa-newspaper-o"></i> Ver todos</a>
-              <a class="dropdown-item" href="#"><i class="fa fa-plus"></i> Adicionar novo</a>
+              <a class="dropdown-item" href="{{ route('painel-add-post') }}"><i class="fa fa-plus"></i> Adicionar novo</a>
             </div>
           </li>
           <li class="nav-item dropdown  {{ $menuAtivo == 'config' ? 'active' : '' }}">
