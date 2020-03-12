@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Painel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Category;
 use App\Http\Requests\StorePost;
 
 class PostController extends Controller
@@ -13,6 +14,8 @@ class PostController extends Controller
     {
         $arrStatus = [0 => 'Rascunho', 1 => 'Publicado'];
         view()->share('arrStatus', $arrStatus);
+        $categories = Category::orderby('nome', 'asc')->get();
+        view()->share('categories', $categories);
 
         view()->share('menuAtivo', 'posts');
     }
@@ -47,31 +50,33 @@ class PostController extends Controller
             $this->authorize('edit-post', $post);
         } else {
             $this->authorize('edit-post');
+            $post->user_id = auth()->user()->id;
         }
         $post->title = $request->title;
         $post->slug = str_slug($request->title);
         $post->resumo = $request->resumo;
         $post->texto = $request->texto;
         $post->status = $request->status;
-        $post->user_id = auth()->user()->id;
 
         if ($request->hasFile('imagem')) {
             //deleta imagem atual, se existir
             if (!empty($post->imagem)) {
-                \Storage::delete('posts/' . $post->imagem);
+                \Storage::delete('public/posts/' . $post->imagem);
             }
             $img = $request->file('imagem');
             $nome = $img->getClientOriginalName();
             $extensao = $img->getClientOriginalExtension();
             $aux = substr(md5(time()), 0, 6);
             $nome_unico = str_slug(str_replace('.' . $extensao, '', $nome)) . '-' . $aux . '.' . $extensao;
-            $img->storeAs('posts', $nome_unico);
+            $img->storeAs('public/posts', $nome_unico);
             
             $post->imagem = $nome_unico;
         }
         
         $msg = ['type' => 'danger', 'msg' => 'Não foi possível salvar os dados!'];
         if($post->save()) {
+            $categories = $request->categories;
+            $post->categories()->sync($categories);
             $msg = ['type' => 'success', 'msg' => 'O post foi salvo com sucesso!'];
         }
 

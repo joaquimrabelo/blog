@@ -46,3 +46,8 @@ body {
 .navbar-blog li.active a {
     color: #3688fc;
 }
+@media only screen and (max-width: 990px) {
+    .navbar-blog {
+        margin-top: 40px;
+    }
+}

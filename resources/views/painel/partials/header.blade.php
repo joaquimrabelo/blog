@@ -1,5 +1,6 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="{{ route('painel-home') }}">Meu blog</a>
+    <div class="container">
+      <a class="navbar-brand" href="{{ route('painel-home') }}">Meu blog</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-blog" aria-controls="navbar-blog" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,5 +25,6 @@
             </li>
         </ul>
       @endauth
+    </div>
     </div>
   </nav>

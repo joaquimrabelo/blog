@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-blog">
-    <div class="collapse navbar-collapse " id="navbar-blog">
+    <div class="container">
+      <div class="collapse navbar-collapse " id="navbar-blog">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item {{ $menuAtivo == 'home' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('painel-home') }}"><i class="fa fa-tachometer"></i> Home</a>
@@ -38,4 +39,5 @@
           </li>
         </ul>
       </div>
+    </div>
 </nav>

@@ -14,14 +14,13 @@
             @endif
             <div class="card">
                 <div class="card-header">Lista de categorias ({{ $categories->total() }})</div>
-                <div class="card-body">
+                <div class="card-body table-responsive">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Nome</th>
                                 <th>Slug</th>
-                                <th>Total de posts</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -31,7 +30,6 @@
                                     <td>{{ $category->id }}</td>
                                     <td>{{ $category->nome }}</td>
                                     <td>{{ $category->slug }}</td>
-                                    <td></td>
                                     <td>
                                         <form action="{{ route('painel-delete-category') }}" method="post">
                                             <a href="{{ route('painel-category', $category->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>

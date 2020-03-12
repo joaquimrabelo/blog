@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'Website\SiteController@index')->name('website-home');
+Route::get('/category/{slug}', 'Website\SiteController@category')->name('website-category');
+Route::get('/post/{slug}', 'Website\SiteController@post')->name('website-post');
 
 Auth::routes();
 

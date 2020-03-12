@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-12 col-sm-4 mt-3">
             <div class="card">
                 <div class="card-header">Categorias</div>
                 <div class="card-body">
@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-12 col-sm-4 mt-3">
             <div class="card">
                 <div class="card-header">Posts</div>
                 <div class="card-body">
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-12 col-sm-4 mt-3">
             <div class="card">
                 <div class="card-header">Usuários</div>
                 <div class="card-body">
@@ -32,7 +32,7 @@
             <div class="col-md-12 mt-3">
                 <div class="card">
                     <div class="card-header">Últimos posts cadastrados</div>
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                         <table class="table table-striped table-condensed">
                             <thead>
                                 <tr>

@@ -12,4 +12,9 @@ class Post extends Model
     {
         return $this->belongsTo('App\Models\User', 'user_id');
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany('App\Models\Category', 'post_categorias');
+    }
 }

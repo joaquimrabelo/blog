@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-12 col-md-12">
             @if (session('status_message'))
                 @php
                     $status_message = Session('status_message');
@@ -14,7 +14,7 @@
             @endif
             <div class="card">
                 <div class="card-header">Lista de grupos de acesso ({{ $groups->total() }})</div>
-                <div class="card-body">
+                <div class="card-body table-responsive">
                     <table class="table table-striped">
                         <thead>
                             <tr>
