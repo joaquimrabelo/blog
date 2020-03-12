@@ -23,8 +23,8 @@ class CreateCategoriesTable extends Migration
         Schema::create('post_categorias', function (Blueprint $table) {
             $table->bigInteger('post_id')->unsigned();
             $table->bigInteger('category_id')->unsigned();
-            $table->foreign('post_id')->references('id')->on('posts');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 
@@ -35,6 +35,7 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('post_categorias');
         Schema::dropIfExists('categories');
     }
 }

@@ -36,4 +36,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function groups()
+    {
+        return $this->belongsToMany('App\Models\Group', 'group_user');
+    }
+
+    public function hasPermission(Permission $permission, $any)
+    {
+        foreach ($permission->groups as $group) {
+            if ($any && isset($any->user_id)) {
+                if($this->groups->contains('nome', $group->nome) && $this->id == $any->user_id){
+                    return true;
+                }
+            } else {
+                if($this->groups->contains('nome', $group->nome)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

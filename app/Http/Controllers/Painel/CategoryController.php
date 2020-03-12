@@ -15,6 +15,7 @@ class CategoryController extends Controller
 
     public function index()
     {
+        $this->authorize('edit-category');
         $categories = Category::orderby('created_at', 'desc')->paginate(30);
         return view('painel.pages.categories.index', compact('categories'));
     }
@@ -25,11 +26,13 @@ class CategoryController extends Controller
         if (!$category) {
             return redirect('/painel/categories');
         }
+        $this->authorize('edit-category', $category);
         return view('painel.pages.categories.form', compact('category'));
     }
 
     public function create()
     {
+        $this->authorize('edit-category');
         return view('painel.pages.categories.form');
     }
 
@@ -48,6 +51,9 @@ class CategoryController extends Controller
         $category = new Category();
         if ($request->id) {
             $category = Category::find($request->id);
+            $this->authorize('edit-category', $category);
+        } else {
+            $this->authorize('edit-category');
         }
         $category->nome = $request->nome;
         $category->slug = str_slug($request->nome);
@@ -62,6 +68,7 @@ class CategoryController extends Controller
     public function delete(Request $request)
     {
         $category = Category::find($request->id);
+        $this->authorize('delete-category', $category);
         $msg = ['type' => 'danger', 'msg' => 'Não foi possível deletar a categoria!'];
         if ($category && $category->delete()) {
             $msg = ['type' => 'success', 'msg' => 'Categoria deletada com sucesso!'];

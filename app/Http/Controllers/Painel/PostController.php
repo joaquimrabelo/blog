@@ -18,6 +18,7 @@ class PostController extends Controller
     }
     public function index()
     {
+        $this->authorize('view-post');
         $posts = Post::orderby('created_at', 'desc')->paginate(30);
         return view('painel.pages.posts.index', compact('posts'));
     }
@@ -28,11 +29,13 @@ class PostController extends Controller
         if (!$post) {
             return redirect('/painel/posts');
         }
+        $this->authorize('edit-post', $post);
         return view('painel.pages.posts.form', compact('post'));
     }
 
     public function create()
     {
+        $this->authorize('edit-post');
         return view('painel.pages.posts.form');
     }
 
@@ -41,7 +44,11 @@ class PostController extends Controller
         $post = new Post();
         if ($request->id) {
             $post = Post::find($request->id);
+            $this->authorize('edit-post', $post);
+        } else {
+            $this->authorize('edit-post');
         }
+        
         $post->title = $request->title;
         $post->slug = str_slug($request->title);
         $post->resumo = $request->resumo;
@@ -71,6 +78,7 @@ class PostController extends Controller
     public function delete(Request $request)
     {
         $post = post::find($request->id);
+        $this->authorize('delete-post', $post);
         $msg = ['type' => 'danger', 'msg' => 'Não foi possível deletar a categoria!'];
         if ($post && $post->delete()) {
             $msg = ['type' => 'success', 'msg' => 'Categoria deletada com sucesso!'];

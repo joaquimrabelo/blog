@@ -30,6 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $this->authorize('view-home');
         $totalPosts = Post::count();
         $posts = Post::orderby('created_at', 'desc')->limit(5)->get();
         $totalCategories = Category::count();
