@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $this->authorize('edit-category');
+        $this->authorize('view-category');
         $categories = Category::orderby('created_at', 'desc')->paginate(30);
         return view('painel.pages.categories.index', compact('categories'));
     }

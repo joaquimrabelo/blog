@@ -31,4 +31,16 @@ Route::group(['prefix' => 'painel', 'middleware' => 'auth'], function() {
     Route::get('category/{id}', 'Painel\CategoryController@edit')->name('painel-category');
     Route::post('category', 'Painel\CategoryController@store')->name('painel-save-category');
     Route::post('category/delete', 'Painel\CategoryController@delete')->name('painel-delete-category');
+
+    Route::get('users', 'Painel\UserController@index')->name('painel-users');
+    Route::get('users/create', 'Painel\UserController@create')->name('painel-add-user');
+    Route::get('user/{id}', 'Painel\UserController@edit')->name('painel-user');
+    Route::post('user', 'Painel\UserController@store')->name('painel-save-user');
+    Route::post('user/delete', 'Painel\UserController@delete')->name('painel-delete-user');
+
+    Route::get('groups', 'Painel\GroupController@index')->name('painel-groups');
+    Route::get('groups/create', 'Painel\GroupController@create')->name('painel-add-group');
+    Route::get('group/{id}', 'Painel\GroupController@edit')->name('painel-group');
+    Route::post('group', 'Painel\GroupController@store')->name('painel-save-group');
+    Route::post('group/delete', 'Painel\GroupController@delete')->name('painel-delete-group');
 });

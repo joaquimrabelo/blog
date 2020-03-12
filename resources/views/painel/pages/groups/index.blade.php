@@ -13,36 +13,32 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header">Lista de posts ({{ $posts->total() }})</div>
+                <div class="card-header">Lista de grupos de acesso ({{ $groups->total() }})</div>
                 <div class="card-body">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Titulo</th>
-                                <th>Slug</th>
-                                <th>Autor</th>
+                                <th>Nome</th>
+                                <th>Descrição</th>
                                 <th>Data criação</th>
                                 <th>Data atualização</th>
-                                <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($posts as $post)
+                            @foreach ($groups as $group)
                                 <tr>
-                                    <td>{{ $post->id }}</td>
-                                    <td>{{ $post->title }}</td>
-                                    <td>{{ $post->slug }}</td>
-                                    <td>{{ $post->autor->name }}</td>
-                                    <td>{{ $post->created_at->format('d/m/Y H:i') }}</td>
-                                    <td>{{ $post->updated_at->format('d/m/Y H:i') }}</td>
-                                    <td>{{ $arrStatus[$post->status] }}</td>
+                                    <td>{{ $group->id }}</td>
+                                    <td>{{ $group->nome }}</td>
+                                    <td>{{ $group->descricao }}</td>
+                                    <td>{{ $group->created_at->format('d/m/Y H:i') }}</td>
+                                    <td>{{ $group->updated_at->format('d/m/Y H:i') }}</td>
                                     <td>
-                                        <form action="{{ route('painel-delete-post') }}" method="post">
-                                            <a href="{{ route('painel-post', $post->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+                                        <form action="{{ route('painel-delete-group') }}" method="post">
+                                            <a href="{{ route('painel-group', $group->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
                                             @csrf
-                                            <input type="hidden" name="id" value="{{ $post->id }}">
+                                            <input type="hidden" name="id" value="{{ $group->id }}">
                                             <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                         </form>
                                     </td>
@@ -50,7 +46,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $posts->links() }}
+                    {{ $groups->links() }}
                 </div>
             </div>
         </div>

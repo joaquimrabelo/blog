@@ -23,6 +23,6 @@ return [
     'groups' => [
         1 => ['nome' => 'Administrador', 'desc' => 'Acesso total ao sistema'],
         2 => ['nome' => 'Revisor', 'desc' => 'Cadastrar e edicar posts e categorias'],
-        3 => ['nome' => 'Editar', 'desc' => 'Cadastrar e editar posts'],
+        3 => ['nome' => 'Editor', 'desc' => 'Cadastrar e editar posts'],
     ]
 ];
