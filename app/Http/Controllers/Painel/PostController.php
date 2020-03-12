@@ -48,24 +48,27 @@ class PostController extends Controller
         } else {
             $this->authorize('edit-post');
         }
-        
         $post->title = $request->title;
         $post->slug = str_slug($request->title);
         $post->resumo = $request->resumo;
         $post->texto = $request->texto;
+        $post->status = $request->status;
+        $post->user_id = auth()->user()->id;
 
-        //deleta imagem atual, se existir
-        if (!empty($post->imagem)) {
-            \Storage::delete('posts/' . $post->imagem);
+        if ($request->hasFile('imagem')) {
+            //deleta imagem atual, se existir
+            if (!empty($post->imagem)) {
+                \Storage::delete('posts/' . $post->imagem);
+            }
+            $img = $request->file('imagem');
+            $nome = $img->getClientOriginalName();
+            $extensao = $img->getClientOriginalExtension();
+            $aux = substr(md5(time()), 0, 6);
+            $nome_unico = str_slug(str_replace('.' . $extensao, '', $nome)) . '-' . $aux . '.' . $extensao;
+            $img->storeAs('posts', $nome_unico);
+            
+            $post->imagem = $nome_unico;
         }
-        $img = $request->file('imagem');
-        $nome = $img->getClientOriginalName();
-        $extensao = $img->getClientOriginalExtension();
-        $aux = substr(md5(time()), 0, 6);
-        $nome_unico = str_slug(str_replace('.' . $extensao, '', $nome)) . '-' . $aux . '.' . $extensao;
-        $img->storeAs('posts', $nome_unico);
-        
-        $post->imagem = $nome_unico;
         
         $msg = ['type' => 'danger', 'msg' => 'Não foi possível salvar os dados!'];
         if($post->save()) {
@@ -77,7 +80,7 @@ class PostController extends Controller
 
     public function delete(Request $request)
     {
-        $post = post::find($request->id);
+        $post = Post::find($request->id);
         $this->authorize('delete-post', $post);
         $msg = ['type' => 'danger', 'msg' => 'Não foi possível deletar a categoria!'];
         if ($post && $post->delete()) {

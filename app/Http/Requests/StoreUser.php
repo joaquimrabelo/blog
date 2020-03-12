@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePost extends FormRequest
+class StoreUser extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,17 +23,17 @@ class StorePost extends FormRequest
      */
     public function rules()
     {
-        $title = 'required|unique:posts';
-        $imagem = 'required:image';
+        $email = 'required|string|email|max:255|unique:users';
+        $pass = 'required|string|min:6|confirmed';
         if ($this->id) {
-            $title = 'required|unique:posts,id,' . $this->id;
-            $imagem = '';
+            $email = 'required|string|email|max:255|unique:users,email,' . $this->id;
+            $pass = 'nullable|string|min:6|confirmed';
         }
         return [
-            'title' => $title,
-            'imagem' => $imagem,
-            'resumo' => 'required',
-            'texto' => 'required'
+            'name' => 'required|string|max:255',
+            'email' => $email,
+            'password' => $pass,
         ];
+        
     }
 }

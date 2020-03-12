@@ -65,6 +65,22 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="status" class="col-md-4 col-form-label text-md-right">Status:</label>
+                            <div class="col-md-8">
+                                <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
+                                    @foreach ($arrStatus as $key => $value)
+                                        <option {{ (isset($post) && $post->status == $key) || old('status') == $key  ? 'selected="selected"' : '' }} value="{{$key}}">{{$value}}</option>
+                                    @endforeach
+                                </select>
+                                @error('status')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <a href="{{ route('painel-posts') }}" class="btn btn-secondary">Cancelar</a>

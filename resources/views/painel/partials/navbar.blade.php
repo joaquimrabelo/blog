@@ -27,8 +27,10 @@
                 <i class="fa fa-cog"></i> Configurações
             </a>
             <div class="dropdown-menu" aria-labelledby="nav-config">
-              <a class="dropdown-item" href="#"><i class="fa fa-group"></i> Usuários</a>
-              <a class="dropdown-item" href="#"><i class="fa fa-list"></i> Permissões de acesso</a>
+              <a class="dropdown-item" href="{{ route('painel-users') }}"><i class="fa fa-group"></i> Usuários</a>
+              <a class="dropdown-item" href="{{ route('painel-add-user') }}"><i class="fa fa-plus"></i> Adicionar usuário</a>
+              <a class="dropdown-item" href="{{ route('painel-groups') }}"><i class="fa fa-list"></i> Grupos de acesso</a>
+              <a class="dropdown-item" href="{{ route('painel-add-group') }}"><i class="fa fa-plus"></i> Adicionar grupo</a>
             </div>
           </li>
           <li class="nav-item">
