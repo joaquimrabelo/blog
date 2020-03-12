@@ -4,7 +4,7 @@
 
 ### Requisitos
 
-- PHP 7.1 ou superior
+- PHP 7.2 ou superior
 - MySQL
 - Composer - [Link](https://getcomposer.org)
 
