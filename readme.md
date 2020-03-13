@@ -28,3 +28,6 @@
 - O sistema irá criar um usuário administrativo:
 Usuário: admin@blog.com
 Senha: admin
+
+- Demo: http://demo-blog.w42.com.br
+- Demo painel: http://demo-blog.w42.com.br/painel
