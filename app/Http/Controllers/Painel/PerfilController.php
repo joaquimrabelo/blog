@@ -32,6 +32,6 @@ class PerfilController extends Controller
             $msg = ['type' => 'success', 'msg' => 'O usuário foi salvo com sucesso!'];
         }
 
-        return redirect('/painel/users')->with('status_message', $msg);
+        return redirect('/painel/home')->with('status_message', $msg);
     }
 }
