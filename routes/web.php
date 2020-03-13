@@ -45,4 +45,7 @@ Route::group(['prefix' => 'painel', 'middleware' => 'auth'], function() {
     Route::get('group/{id}', 'Painel\GroupController@edit')->name('painel-group');
     Route::post('group', 'Painel\GroupController@store')->name('painel-save-group');
     Route::post('group/delete', 'Painel\GroupController@delete')->name('painel-delete-group');
+
+    Route::get('perfil', 'Painel\PerfilController@edit')->name('painel-perfil');
+    Route::post('perfil', 'Painel\PerfilController@store')->name('painel-save-perfil');
 });

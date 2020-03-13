@@ -42,7 +42,7 @@ class SiteController extends Controller
         foreach ($destaques as $post) {
             $posts_destaques[] = $post->id;
         }
-        $posts = Post::where('status', 1)->whereNotIn('id', $posts_destaques)->orderby('created_at', 'desc')->paginate(10);
+        $posts = Post::where('status', 1)->whereNotIn('id', $posts_destaques)->orderby('created_at', 'desc')->paginate(6);
         return view('website.pages.home', compact('posts', 'destaques'));
     }
 
